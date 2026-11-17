@@ -1,0 +1,36 @@
+import { Link } from "react-router-dom";
+
+export function BrandMark({ size = 36 }) {
+  return (
+    <svg
+      className="brand-mark"
+      width={size}
+      height={size}
+      viewBox="0 0 64 64"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="brand-ring" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#0075ff" />
+          <stop offset="1" stopColor="#21d4fd" />
+        </linearGradient>
+      </defs>
+      <rect width="64" height="64" rx="16" fill="#0b1437" />
+      <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" fill="none" stroke="url(#brand-ring)" strokeWidth="3" />
+      <path d="M14 12 L27 22 H37 L50 12 L52 34 C52 46 42 53 32 56 C22 53 12 46 12 34 Z" fill="#ff8a1f" />
+      <path d="M18 36 C22 46 28 52 32 56 C36 52 42 46 46 36 C40 41 36 40 32 38 C28 40 24 41 18 36Z" fill="#fff3e3" />
+      <circle cx="24" cy="31" r="3" fill="#1a0f2e" />
+      <circle cx="40" cy="31" r="3" fill="#1a0f2e" />
+      <ellipse cx="32" cy="44" rx="3.2" ry="2.4" fill="#1a0f2e" />
+    </svg>
+  );
+}
+
+export default function Brand({ to = "/" }) {
+  return (
+    <Link to={to} className="brand" aria-label="VERITAS home">
+      <BrandMark />
+      <span>VERITAS</span>
+    </Link>
+  );
+}

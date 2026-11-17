@@ -1,0 +1,172 @@
+/* ───────────────────────── Design tokens ─────────────────────────
+   VERITAS follows the Vision UI Dashboard language: deep navy canvas,
+   frosted glass surfaces, blue → cyan brand gradient, soft glows.
+   The fox's orange is the only warm accent. */
+:root {
+  --bg-0: #060b28;
+  --bg-1: #0f1535;
+  --bg-2: #1a1f37;
+
+  --glass: rgba(5, 9, 32, 0.86);
+  --glass-flat: rgba(255, 255, 255, 0.04);
+  --stroke: rgba(255, 255, 255, 0.11);
+  --stroke-strong: rgba(226, 232, 240, 0.28);
+
+  --text: #ffffff;
+  --muted: #a0aec0;
+  --faint: #8c99b8;
+
+  --blue: #0075ff;
+  --blue-strong: #0a5fd8; /* white text on this passes 4.5:1 */
+  --cyan: #21d4fd;
+  --brand: linear-gradient(97deg, #0075ff 0%, #21d4fd 100%);
+  --brand-soft: linear-gradient(97deg, rgba(0, 117, 255, 0.22), rgba(33, 212, 253, 0.12));
+  --fox: #ff8a1f;
+
+  /* Accent roles. Orange (the fox) means "do this". Cyan means "chain data".
+     Green / amber / red are verdicts only. */
+  --accent: #ff8a1f;
+  --accent-grad: linear-gradient(97deg, #ff7a18 0%, #ffb547 100%);
+  --on-accent: #1a0d02;
+
+  --ok: #01b574;
+  --ok-text: #3dffb0;
+  --bad: #e31a1a;
+  --bad-text: #ff7b7b;
+  --warn: #ffb547;
+
+  --radius-lg: 12px;
+  --radius-md: 9px;
+  --radius-sm: 8px;
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  --glow: 0 0 0 1px rgba(33, 212, 253, 0.5);
+
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Bricolage Grotesque Variable", "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  color-scheme: dark;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg-0);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+}
+
+/* Rendered fingerprint macro as the page backdrop (see /public/img) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(5, 9, 32, 0.56), rgba(5, 9, 32, 0.56)),
+    url("/img/dash.webp") center / cover no-repeat;
+}
+
+/* Film grain: makes flat navy feel printed, not rendered */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 88%;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  word-break: break-all;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: rgba(33, 212, 253, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

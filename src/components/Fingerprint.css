@@ -1,0 +1,103 @@
+.fp {
+  --fp-a: #21d4fd;
+  --fp-b: #0075ff;
+  --fp-core: #ff8a1f;
+  display: block;
+  overflow: visible;
+}
+
+.fp-plate {
+  fill: rgba(33, 212, 253, 0.05);
+  stroke: rgba(33, 212, 253, 0.22);
+  stroke-width: 0.8;
+}
+
+.fp-ridge {
+  fill: none;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+}
+
+.fp-core {
+  fill: var(--fp-core);
+  filter: drop-shadow(0 0 3px var(--fp-core));
+}
+
+.fp-empty .fp-ridge {
+  opacity: 0.32;
+}
+
+.fp-empty .fp-core {
+  opacity: 0.4;
+}
+
+.fp-valid {
+  --fp-a: #3dffb0;
+  --fp-b: #01b574;
+  --fp-core: #3dffb0;
+}
+
+.fp-revoked {
+  --fp-a: #ffd166;
+  --fp-b: #ff8a1f;
+  --fp-core: #ffb547;
+}
+
+.fp-missing {
+  --fp-a: #ff9b9b;
+  --fp-b: #e31a1a;
+  --fp-core: #ff6b6b;
+}
+
+.fp-valid .fp-plate {
+  fill: rgba(1, 181, 116, 0.08);
+  stroke: rgba(61, 255, 176, 0.35);
+}
+
+.fp-revoked .fp-plate {
+  fill: rgba(255, 181, 71, 0.07);
+  stroke: rgba(255, 181, 71, 0.4);
+}
+
+.fp-missing .fp-plate {
+  fill: rgba(227, 26, 26, 0.07);
+  stroke: rgba(255, 107, 107, 0.4);
+}
+
+/* Ridges draw outward from the core when a new hash appears */
+.fp-animate .fp-ridge {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fp-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 28ms);
+}
+
+.fp-scanning .fp-ridge {
+  animation:
+    fp-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    fp-pulse 1.6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 28ms), calc(var(--i) * 90ms);
+}
+
+.fp-scan {
+  fill: var(--fp-a);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px var(--fp-a));
+  animation: fp-sweep 1.6s ease-in-out infinite;
+}
+
+@keyframes fp-grow {
+  from { opacity: 0; transform: scale(0.55); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fp-pulse {
+  0%, 100% { stroke-width: 1.35; }
+  50% { stroke-width: 2.2; }
+}
+
+@keyframes fp-sweep {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(116px); }
+  100% { transform: translateY(0); }
+}

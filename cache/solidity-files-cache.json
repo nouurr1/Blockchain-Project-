@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\ranyym\\blockchain-diplomes\\diploma-verification\\contracts\\Diplome.sol": {
+      "lastModificationDate": 1794939119347,
+      "contentHash": "32c4fa26acac16881943543722266a9a",
+      "sourceName": "contracts/Diplome.sol",
+      "solcConfig": {
+        "version": "0.8.34",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Diplome"
+      ]
+    }
+  }
+}
